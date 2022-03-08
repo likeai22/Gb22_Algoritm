@@ -13,7 +13,6 @@ for i in range(4):
         sum_n = 0
         for item in matrix_row:
             sum_n += item
-        matrix_row.append(sum_n)
-        matrix.append(matrix_row)
+        matrix.extend([[*matrix_row, sum_n]])
 
 [print(''.join(str(a))) for a in matrix]
