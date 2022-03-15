@@ -9,7 +9,7 @@ import timeit
 
 
 # Вариант 1 (простой)
-def simple(number):  # Где n, это номер искомого простого числа.
+def simple(number):
     primes = []
     i = 1
 
@@ -51,9 +51,8 @@ if __name__ == '__main__':
             1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
     """
 
-    # Вариант 2 (решето Эратосфена)
 
-
+# Вариант 2 (решето Эратосфена)
 def eratosfen(num):
     primes = [2]
     count = 3
