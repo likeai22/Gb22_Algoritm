@@ -53,3 +53,50 @@ if __name__ == '__main__':
 
     # Вариант 2 (решето Эратосфена)
 
+
+def eratosfen(num):
+    primes = [2]
+    count = 3
+    while len(primes) < num:
+        for i in primes:
+            if count % i == 0:
+                break
+            if i > count ** (1 / 2):
+                primes.append(count)
+                break
+        count += 1
+    return primes[-1]
+
+
+if __name__ == '__main__':
+    prime = 1
+    print(timeit.timeit("eratosfen(prime)", setup="from __main__ import eratosfen, prime", number=100))
+    # 7.990000085555948e-05
+    print(timeit.timeit("eratosfen(prime * 10)", setup="from __main__ import eratosfen, prime", number=100))
+    # 0.002133500000127242
+    print(timeit.timeit("eratosfen(prime * 100)", setup="from __main__ import eratosfen, prime", number=100))
+    # 0.19205160000092292
+    print(timeit.timeit("eratosfen(prime * 1000)", setup="from __main__ import eratosfen, prime", number=100))
+    # 1.1864953999993304
+
+    cProfile.run('eratosfen(prime * 100)')
+
+    """:cvar
+             643 function calls in 0.001 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.001    0.001 <string>:1(<module>)
+        1    0.001    0.001    0.001    0.001 les_4_task_2.py:57(eratosfen)
+        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+      540    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       99    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    """
+
+""":cvar
+Сложность простого алгоритма O(n^2)
+Сложность решета Эратосфена O(n log(log n))
+Алгоритм решета Эратосфена эффективен для поиска простого числа с большим порядковым номером
+"""
